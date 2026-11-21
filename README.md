@@ -67,7 +67,7 @@ Free roam continues after mission 5. Collect the 12 cash stashes and build your 
 - `game/style.css` : HUD, menus and touch controls
 - `game/game.js` : the whole game, canvas rendering, missions, police, traffic and save
 - `main.ts` : a small Node 22 build script, it copies `game/` and `screenshots/` to `out/` and writes `out/dossier.json`
-- `screenshots/` : 4 real renders of the game, captured in headless Chromium from this game's own code
+- `screenshots/` : 4 real renders of the game, captured in headless Chromium from this game's own code (capture notes in `SCREENSHOTS.md`)
 - `LICENSE` : MIT
 
 ## Bounty notes, read before submitting
