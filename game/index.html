@@ -1,89 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>Leonida Heat: Sixth City</title>
+<link rel="icon" href="data:,">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div id="game-wrap">
-  <canvas id="game" width="960" height="600"></canvas>
+<div id="wrap">
+  <canvas id="game" width="1280" height="800"></canvas>
+  <canvas id="minimap" width="220" height="160"></canvas>
 
   <div id="hud">
     <div id="hud-left">
-      <div id="stars" title="Wanted level"></div>
-      <div id="health-row"><span class="hud-label">HEALTH</span><div class="bar"><div id="health-fill"></div></div></div>
-      <div id="money-row"><span class="hud-label">CASH</span><span id="money">$250</span><span id="score">SCORE 0</span></div>
-      <div id="weapon-row"><span id="weapon">FISTS</span><span id="ammo"></span><span id="speed"></span></div>
+      <div class="hud-row"><span class="label">HEALTH</span><div class="bar"><div id="health-bar"></div></div><span id="health-num">100</span></div>
+      <div class="hud-row"><span class="label">CASH</span><span id="cash">$0</span><span class="label">SCORE</span><span id="score">0</span></div>
+      <div class="hud-row"><span class="label">WEAPON</span><span id="weapon">Fists</span><span class="label">SPEED</span><span id="speed">0 mph</span></div>
     </div>
     <div id="hud-right">
-      <canvas id="minimap" width="180" height="135"></canvas>
-      <div id="clock">DAY 1 - 09:00</div>
+      <div id="wanted"></div>
+      <div id="clock">08:00</div>
     </div>
-    <div id="mission-box">
-      <div id="mission-title">MISSION 1: FIRST WHEELS</div>
-      <div id="mission-text">Steal a car. Walk up to any parked car and press E.</div>
-      <div id="mission-progress"></div>
-    </div>
-    <div id="toast"></div>
-    <div id="waypoint"></div>
   </div>
 
-  <div id="touch-controls">
+  <div id="mission-box">
+    <div id="mission-title">MISSION 1: FIRST WHEELS</div>
+    <div id="mission-text">Steal a car. Walk to a parked car and press E.</div>
+  </div>
+
+  <div id="toast"></div>
+  <div id="banner"></div>
+
+  <div id="start-screen" class="screen">
+    <h1>LEONIDA HEAT</h1>
+    <h2>SIXTH CITY</h2>
+    <p class="story">Marcus Reed and Nia Solano owe $5,000 to the Bayfront crew.
+    Five jobs stand between them and freedom. Steal cars, lose the police,
+    run the deliveries, and do not get caught.</p>
+    <div class="controls">
+      <p><b>WASD / Arrows</b> move &nbsp; <b>Shift</b> run &nbsp; <b>E</b> enter or steal a car</p>
+      <p><b>W / S</b> drive &nbsp; <b>A / D</b> steer &nbsp; <b>Space</b> hit or shoot &nbsp; <b>P</b> pause &nbsp; <b>M</b> sound</p>
+    </div>
+    <button id="btn-start">START NEW GAME</button>
+    <button id="btn-continue">CONTINUE SAVED GAME</button>
+    <p class="fine">An original game. No Rockstar content. All sound is synthesised. Works offline.</p>
+  </div>
+
+  <div id="pause-screen" class="screen hidden">
+    <h1>PAUSED</h1>
+    <p id="pause-info"></p>
+    <button id="btn-resume">RESUME</button>
+    <button id="btn-save">SAVE GAME</button>
+    <button id="btn-restart">RESTART</button>
+    <button id="btn-quit">QUIT TO TITLE</button>
+  </div>
+
+  <div id="end-screen" class="screen hidden">
+    <h1 id="end-title">BUSTED</h1>
+    <p id="end-text"></p>
+    <p id="end-stats"></p>
+    <button id="btn-again">PLAY AGAIN</button>
+    <button id="btn-title">TITLE SCREEN</button>
+  </div>
+
+  <div id="touch">
     <div id="dpad">
-      <button data-k="up" aria-label="Up">&#9650;</button>
-      <button data-k="left" aria-label="Left">&#9664;</button>
-      <button data-k="down" aria-label="Down">&#9660;</button>
-      <button data-k="right" aria-label="Right">&#9654;</button>
+      <button data-k="up" class="tbtn">▲</button>
+      <button data-k="left" class="tbtn">◀</button>
+      <button data-k="down" class="tbtn">▼</button>
+      <button data-k="right" class="tbtn">▶</button>
     </div>
-    <div id="touch-buttons">
-      <button id="btn-enter">ENTER</button>
-      <button id="btn-action">HIT</button>
-      <button id="btn-run">RUN</button>
-    </div>
-  </div>
-
-  <div id="start-screen" class="overlay">
-    <div class="panel">
-      <div class="kicker">SIXTH CITY &middot; LEONIDA BAY</div>
-      <h1>LEONIDA<br>HEAT</h1>
-      <p class="tagline">An original open world crime game, in the spirit of GTA 6. No Rockstar content, no copied art, no copied music. Everything here was made for this game.</p>
-      <p class="story"><strong>Marcus Reed</strong> and <strong>Nia Solano</strong> owe $5,000 to the Bayfront crew. Five jobs stand between them and freedom. Steal cars, lose the police, run the deliveries, and do not get caught.</p>
-      <div class="controls-grid">
-        <div><strong>Move</strong><span>WASD / Arrows</span></div>
-        <div><strong>Run</strong><span>Shift</span></div>
-        <div><strong>Enter / steal car</strong><span>E</span></div>
-        <div><strong>Hit / shoot</strong><span>Space / Click</span></div>
-        <div><strong>Pause</strong><span>P or Esc</span></div>
-        <div><strong>Sound</strong><span>M</span></div>
-      </div>
-      <p class="hint">Tip: stealing a car in front of police raises your wanted stars. Hide, or drive fast, to cool down. Cash stashes glow green around the city.</p>
-      <div class="start-buttons">
-        <button id="btn-start" class="big-btn">START NEW GAME</button>
-        <button id="btn-continue" class="big-btn secondary">CONTINUE SAVED GAME</button>
-      </div>
-      <p class="fine">Plays offline, in a desktop browser, from its own files. Save is stored in this browser only.</p>
-    </div>
-  </div>
-
-  <div id="end-screen" class="overlay hidden">
-    <div class="panel">
-      <h2 id="end-title">BUSTED</h2>
-      <p id="end-text">The Sixth City police caught up with you.</p>
-      <p id="end-stats"></p>
-      <button id="btn-restart" class="big-btn">PLAY AGAIN</button>
-      <button id="btn-menu" class="big-btn secondary">BACK TO MENU</button>
-    </div>
-  </div>
-
-  <div id="pause-screen" class="overlay hidden">
-    <div class="panel">
-      <h2>PAUSED</h2>
-      <p>Take a breath. Sixth City will wait.</p>
-      <button id="btn-resume" class="big-btn">RESUME</button>
-      <button id="btn-save" class="big-btn secondary">SAVE GAME</button>
-      <button id="btn-quit" class="big-btn secondary">QUIT TO MENU</button>
+    <div id="touch-actions">
+      <button id="t-enter" class="tbtn big">ENTER</button>
+      <button id="t-hit" class="tbtn big">HIT</button>
+      <button id="t-run" class="tbtn big">RUN</button>
     </div>
   </div>
 </div>

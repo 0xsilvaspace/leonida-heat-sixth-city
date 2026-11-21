@@ -1,60 +1,49 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html, body { height: 100%; background: #0b1020; font-family: Arial, Helvetica, sans-serif; color: #fff; overflow: hidden; }
-#game-wrap { position: relative; width: 100vw; height: 100vh; max-width: 1280px; margin: 0 auto; background: #111; }
-#game { display: block; width: 100%; height: 100%; background: #2a4d3a; touch-action: none; }
-#hud { position: absolute; inset: 0; pointer-events: none; }
-#hud-left { position: absolute; top: 12px; left: 12px; background: rgba(0,0,0,0.55); padding: 10px 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.2); min-width: 240px; }
-#stars { font-size: 22px; letter-spacing: 3px; color: #ffd23e; min-height: 26px; }
-#stars .off { color: rgba(255,255,255,0.25); }
-.hud-label { font-size: 11px; letter-spacing: 2px; color: #ffb3d9; margin-right: 8px; }
-.bar { display: inline-block; width: 130px; height: 12px; background: #333; border-radius: 6px; overflow: hidden; vertical-align: middle; }
-#health-fill { height: 100%; width: 100%; background: linear-gradient(90deg, #37e08a, #a8ff6a); transition: width 0.2s; }
-#money-row { margin-top: 6px; font-weight: bold; font-size: 18px; }
-#money { color: #7dff9a; margin-right: 12px; }
-#score { font-size: 12px; color: #cfe8ff; }
-#weapon-row { margin-top: 4px; font-size: 13px; color: #ffe9a8; }
-#weapon-row span { margin-right: 10px; }
-#hud-right { position: absolute; top: 12px; right: 12px; text-align: right; }
-#minimap { border: 2px solid rgba(255,255,255,0.7); border-radius: 8px; background: #123; display: block; }
-#clock { margin-top: 4px; font-size: 12px; background: rgba(0,0,0,0.55); display: inline-block; padding: 4px 8px; border-radius: 6px; }
-#mission-box { position: absolute; left: 12px; bottom: 12px; max-width: 420px; background: rgba(10,10,30,0.75); border-left: 5px solid #ff4d8d; padding: 10px 12px; border-radius: 8px; }
-#mission-title { font-weight: bold; letter-spacing: 1px; color: #ff8fb8; font-size: 14px; }
-#mission-text { font-size: 14px; margin-top: 4px; line-height: 1.4; }
-#mission-progress { font-size: 12px; color: #9be7ff; margin-top: 4px; }
-#toast { position: absolute; top: 90px; left: 50%; transform: translateX(-50%); background: #ff4d8d; color: #fff; padding: 10px 16px; border-radius: 20px; font-weight: bold; opacity: 0; transition: opacity 0.3s; white-space: nowrap; max-width: 90vw; overflow: hidden; text-overflow: ellipsis; }
-#toast.show { opacity: 1; }
-#waypoint { position: absolute; font-size: 28px; color: #ffd23e; text-shadow: 0 2px 6px #000; display: none; }
-.overlay { position: absolute; inset: 0; background: linear-gradient(160deg, rgba(20,8,40,0.92), rgba(0,40,70,0.88)); display: flex; align-items: center; justify-content: center; padding: 20px; z-index: 10; }
-.overlay.hidden { display: none; }
-.panel { max-width: 640px; width: 100%; text-align: center; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.25); border-radius: 16px; padding: 28px 24px; }
-.kicker { letter-spacing: 4px; font-size: 12px; color: #7dffd4; }
-h1 { font-size: 64px; line-height: 0.95; letter-spacing: 2px; color: #ff4d8d; text-shadow: 0 4px 0 #5b1030, 0 8px 24px rgba(0,0,0,0.6); margin: 10px 0; }
-h2 { font-size: 42px; color: #ff4d8d; margin-bottom: 10px; }
-.tagline, .story { font-size: 15px; line-height: 1.55; color: #eaf2ff; margin: 10px 0; }
-.controls-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 16px 0; text-align: left; }
-.controls-grid div { background: rgba(0,0,0,0.35); padding: 8px 10px; border-radius: 8px; font-size: 13px; }
-.controls-grid strong { display: block; color: #ffd23e; }
-.hint { font-size: 13px; color: #cfe8ff; line-height: 1.5; }
-.start-buttons { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin: 16px 0 8px; }
-.big-btn { pointer-events: auto; cursor: pointer; background: #ff4d8d; color: #fff; border: none; padding: 14px 22px; border-radius: 10px; font-size: 16px; font-weight: bold; letter-spacing: 1px; }
-.big-btn:hover { background: #ff6aa0; }
-.big-btn.secondary { background: #2b3a55; }
-.fine { font-size: 12px; color: #9fb3c8; margin-top: 8px; }
-#touch-controls { position: absolute; inset: auto 0 0 0; display: none; justify-content: space-between; padding: 12px; pointer-events: none; z-index: 5; }
-body.touch #touch-controls { display: flex; }
-body.touch #mission-box { bottom: 130px; }
-#dpad { display: grid; grid-template-columns: repeat(3, 52px); grid-template-rows: repeat(3, 52px); gap: 4px; pointer-events: auto; }
-#dpad button { background: rgba(0,0,0,0.55); color: #fff; border: 1px solid #fff; border-radius: 10px; font-size: 18px; }
-#dpad button[data-k="up"] { grid-column: 2; grid-row: 1; }
-#dpad button[data-k="left"] { grid-column: 1; grid-row: 2; }
-#dpad button[data-k="down"] { grid-column: 2; grid-row: 3; }
-#dpad button[data-k="right"] { grid-column: 3; grid-row: 2; }
-#touch-buttons { display: flex; flex-direction: column; gap: 8px; pointer-events: auto; }
-#touch-buttons button { background: rgba(255,77,141,0.85); color: #fff; border: none; border-radius: 999px; padding: 12px 16px; font-weight: bold; }
-@media (max-width: 700px) {
-  h1 { font-size: 44px; }
-  #hud-left { min-width: 180px; padding: 8px; }
-  #minimap { width: 120px; height: 90px; }
-  #mission-box { max-width: 68vw; }
-  .controls-grid { grid-template-columns: 1fr; }
+html, body { background: #0d0f14; color: #f2f2f2; font-family: Arial, Helvetica, sans-serif; overflow: hidden; }
+#wrap { position: relative; width: 1280px; height: 800px; margin: 0 auto; }
+#game { display: block; width: 1280px; height: 800px; background: #1c2733; }
+#minimap { position: absolute; right: 12px; bottom: 12px; border: 2px solid #f5c518; background: #111; opacity: 0.95; }
+
+#hud { position: absolute; top: 0; left: 0; right: 0; display: flex; justify-content: space-between; padding: 10px 14px; pointer-events: none; text-shadow: 1px 1px 2px #000; }
+#hud-left { display: flex; flex-direction: column; gap: 4px; }
+.hud-row { display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: bold; }
+.label { color: #f5c518; font-size: 12px; letter-spacing: 1px; }
+.bar { width: 180px; height: 14px; background: #333; border: 1px solid #888; }
+#health-bar { height: 100%; width: 100%; background: #37c24a; }
+#hud-right { text-align: right; }
+#wanted { font-size: 26px; letter-spacing: 4px; color: #ffd75e; min-height: 32px; }
+#clock { font-size: 20px; font-weight: bold; }
+
+#mission-box { position: absolute; top: 74px; left: 14px; background: rgba(0,0,0,0.72); border-left: 4px solid #f5c518; padding: 8px 12px; max-width: 420px; pointer-events: none; }
+#mission-title { color: #f5c518; font-weight: bold; font-size: 15px; letter-spacing: 1px; }
+#mission-text { font-size: 14px; margin-top: 3px; line-height: 1.35; }
+
+#toast { position: absolute; bottom: 190px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.8); padding: 8px 18px; border-radius: 4px; font-size: 16px; font-weight: bold; opacity: 0; transition: opacity 0.2s; pointer-events: none; }
+#banner { position: absolute; top: 42%; left: 50%; transform: translate(-50%,-50%); font-size: 44px; font-weight: bold; color: #f5c518; text-shadow: 2px 2px 0 #000, 0 0 24px rgba(245,197,24,0.5); opacity: 0; transition: opacity 0.3s; pointer-events: none; text-align: center; }
+
+.screen { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; background: linear-gradient(160deg, #1a0b2e 0%, #3d0a2e 45%, #0b2e4a 100%); text-align: center; padding: 30px; }
+.screen.hidden { display: none; }
+.screen h1 { font-size: 64px; letter-spacing: 6px; color: #ff5da2; text-shadow: 3px 3px 0 #000; }
+.screen h2 { font-size: 30px; letter-spacing: 14px; color: #f5c518; }
+.story { max-width: 620px; font-size: 17px; line-height: 1.5; color: #eee; }
+.controls { font-size: 14px; line-height: 1.7; color: #cdd6e4; background: rgba(0,0,0,0.35); padding: 10px 18px; border-radius: 6px; }
+.controls b { color: #fff; }
+button { cursor: pointer; font-size: 17px; font-weight: bold; padding: 12px 26px; border: 2px solid #f5c518; background: #f5c518; color: #111; border-radius: 4px; }
+button:hover { background: #ffd75e; }
+#btn-continue { background: transparent; color: #f5c518; }
+#btn-continue:hover { background: rgba(245,197,24,0.15); }
+.fine { font-size: 12px; color: #9aa5b5; }
+#end-stats { font-size: 16px; line-height: 1.6; }
+
+#touch { display: none; }
+@media (pointer: coarse) {
+  #touch { display: block; }
+  #dpad { position: absolute; left: 16px; bottom: 16px; display: grid; grid-template-columns: repeat(3, 56px); grid-template-rows: repeat(3, 56px); }
+  #dpad .tbtn:nth-child(1) { grid-column: 2; grid-row: 1; }
+  #dpad .tbtn:nth-child(2) { grid-column: 1; grid-row: 2; }
+  #dpad .tbtn:nth-child(3) { grid-column: 2; grid-row: 3; }
+  #dpad .tbtn:nth-child(4) { grid-column: 3; grid-row: 2; }
+  #touch-actions { position: absolute; right: 16px; bottom: 16px; display: flex; flex-direction: column; gap: 10px; }
+  .tbtn { padding: 0; width: 56px; height: 56px; font-size: 20px; background: rgba(245,197,24,0.85); }
+  .tbtn.big { width: 84px; height: 48px; font-size: 15px; }
 }
