@@ -4,77 +4,69 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>Leonida Heat: Sixth City</title>
-<link rel="icon" href="data:,">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div id="wrap">
   <canvas id="game" width="1280" height="800"></canvas>
-  <canvas id="minimap" width="220" height="160"></canvas>
 
-  <div id="hud">
+  <div id="hud" class="hidden">
     <div id="hud-left">
-      <div class="hud-row"><span class="label">HEALTH</span><div class="bar"><div id="health-bar"></div></div><span id="health-num">100</span></div>
-      <div class="hud-row"><span class="label">CASH</span><span id="cash">$0</span><span class="label">SCORE</span><span id="score">0</span></div>
-      <div class="hud-row"><span class="label">WEAPON</span><span id="weapon">Fists</span><span class="label">SPEED</span><span id="speed">0 mph</span></div>
+      <div id="health-row"><span class="hud-label">HEALTH</span><div id="health-bar"><div id="health-fill"></div></div></div>
+      <div id="cash-row"><span class="hud-label">CASH</span><span id="cash">$0</span></div>
+      <div id="score-row"><span class="hud-label">SCORE</span><span id="score">0</span></div>
+    </div>
+    <div id="hud-center">
+      <div id="wanted"></div>
+      <div id="mission-box"><div id="mission-title"></div><div id="mission-text"></div><div id="mission-timer"></div></div>
     </div>
     <div id="hud-right">
-      <div id="wanted"></div>
-      <div id="clock">08:00</div>
+      <div id="weapon-row"><span class="hud-label">WEAPON</span><span id="weapon">Fists</span></div>
+      <div id="speed-row"><span class="hud-label">SPEED</span><span id="speed">0 mph</span></div>
+      <div id="clock-row"><span class="hud-label">TIME</span><span id="clock">08:00</span></div>
+      <div id="district-row"><span id="district">The Strip</span></div>
     </div>
+    <canvas id="minimap" width="220" height="160"></canvas>
+    <div id="toast"></div>
   </div>
 
-  <div id="mission-box">
-    <div id="mission-title">MISSION 1: FIRST WHEELS</div>
-    <div id="mission-text">Steal a car. Walk to a parked car and press E.</div>
-  </div>
-
-  <div id="toast"></div>
-  <div id="banner"></div>
-
-  <div id="start-screen" class="screen">
+  <div id="start-screen">
     <h1>LEONIDA HEAT</h1>
     <h2>SIXTH CITY</h2>
     <p class="story">Marcus Reed and Nia Solano owe $5,000 to the Bayfront crew.
-    Five jobs stand between them and freedom. Steal cars, lose the police,
-    run the deliveries, and do not get caught.</p>
-    <div class="controls">
-      <p><b>WASD / Arrows</b> move &nbsp; <b>Shift</b> run &nbsp; <b>E</b> enter or steal a car</p>
-      <p><b>W / S</b> drive &nbsp; <b>A / D</b> steer &nbsp; <b>Space</b> hit or shoot &nbsp; <b>P</b> pause &nbsp; <b>M</b> sound</p>
+    Five jobs. One city. Pay it back before the heat catches up.</p>
+    <div class="buttons">
+      <button id="btn-new">START NEW GAME</button>
+      <button id="btn-continue">CONTINUE SAVED GAME</button>
     </div>
-    <button id="btn-start">START NEW GAME</button>
-    <button id="btn-continue">CONTINUE SAVED GAME</button>
-    <p class="fine">An original game. No Rockstar content. All sound is synthesised. Works offline.</p>
+    <div class="controls">
+      <p><b>Move:</b> WASD or arrow keys &nbsp; <b>Steal / enter car:</b> E &nbsp; <b>Leave car:</b> E</p>
+      <p><b>Fight:</b> F fists, click or Space to shoot (pistol) &nbsp; <b>Pause / save:</b> P or Esc</p>
+      <p><b>Touch:</b> on-screen D-pad, STEAL and SHOOT buttons</p>
+    </div>
+    <p class="fine">An original game. No Rockstar assets, logos, or music. All sound is synthesised in your browser. Plays fully offline.</p>
   </div>
 
-  <div id="pause-screen" class="screen hidden">
-    <h1>PAUSED</h1>
-    <p id="pause-info"></p>
-    <button id="btn-resume">RESUME</button>
-    <button id="btn-save">SAVE GAME</button>
-    <button id="btn-restart">RESTART</button>
-    <button id="btn-quit">QUIT TO TITLE</button>
-  </div>
-
-  <div id="end-screen" class="screen hidden">
+  <div id="end-screen" class="hidden">
     <h1 id="end-title">BUSTED</h1>
     <p id="end-text"></p>
-    <p id="end-stats"></p>
-    <button id="btn-again">PLAY AGAIN</button>
-    <button id="btn-title">TITLE SCREEN</button>
+    <div class="buttons">
+      <button id="btn-retry">TRY AGAIN</button>
+      <button id="btn-menu">MAIN MENU</button>
+    </div>
   </div>
 
-  <div id="touch">
+  <div id="touch" class="hidden">
     <div id="dpad">
-      <button data-k="up" class="tbtn">▲</button>
-      <button data-k="left" class="tbtn">◀</button>
-      <button data-k="down" class="tbtn">▼</button>
-      <button data-k="right" class="tbtn">▶</button>
+      <button data-k="up">&#9650;</button>
+      <button data-k="left">&#9664;</button>
+      <button data-k="down">&#9660;</button>
+      <button data-k="right">&#9654;</button>
     </div>
-    <div id="touch-actions">
-      <button id="t-enter" class="tbtn big">ENTER</button>
-      <button id="t-hit" class="tbtn big">HIT</button>
-      <button id="t-run" class="tbtn big">RUN</button>
+    <div id="touch-buttons">
+      <button id="t-steal">STEAL</button>
+      <button id="t-shoot">SHOOT</button>
+      <button id="t-pause">II</button>
     </div>
   </div>
 </div>

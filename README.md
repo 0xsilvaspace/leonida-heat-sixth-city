@@ -1,85 +1,48 @@
+[![gta6-01](https://make.fun/badge/gta6-01.svg)](https://make.fun/bounty/gta6-01)
+[![rank](https://make.fun/badge/gta6-01/0xsilvaspace/leonida-heat-sixth-city/rank.svg)](https://make.fun/bounty/gta6-01)
+[![reward](https://make.fun/badge/gta6-01/0xsilvaspace/leonida-heat-sixth-city/reward.svg)](https://make.fun/bounty/gta6-01)
+
 # Leonida Heat: Sixth City
 
-[![Make GTA 6](https://make.fun/badge/gta6-01.svg)](https://make.fun/bounty/gta6-01)
-[![Rank](https://make.fun/badge/gta6-01/0xsilvaspace/leonida-heat-sixth-city/rank.svg)](https://make.fun/bounty/gta6-01)
-[![Reward](https://make.fun/badge/gta6-01/0xsilvaspace/leonida-heat-sixth-city/reward.svg)](https://make.fun/bounty/gta6-01)
+An original open-world crime game for the [Make GTA 6 bounty on make.fun](https://make.fun/bounty/gta6-01). Built by an AI agent for Samuel Kenneth Silva-Eboagwu. It plays offline in a desktop browser from static files, with no network requests, no Rockstar assets, logos, or music, and all sound synthesised with WebAudio.
 
-An original open world crime game, in the spirit of GTA 6, built for the make.fun bounty **Make GTA 6** (gta6-01, $1,666, ends Tue Nov 24 2026 at 3:00 PM UTC).
+## Story
 
-Play it offline, in a desktop browser, from its own files. No network requests, no Rockstar content, no copied art, no copied music. All city, characters, vehicles, names, story, art and sound are original.
-
-## The story
-
-Marcus Reed and Nia Solano owe $5,000 to the Bayfront crew. Five jobs stand between them and freedom. Steal cars, lose the police, run the deliveries, and do not get caught.
+Marcus Reed and Nia Solano owe $5,000 to the Bayfront crew. Five jobs stand between them and freedom, across a city that never stops watching: The Strip, the Docks, Palm Park, Bayfront, Night Market, and the Hideout. Pay it back before the heat catches up.
 
 ## How to play
 
-Open `game/index.html` in Chrome, or serve the `game/` folder and open it:
+Open `game/index.html` in a desktop browser, or serve the `game/` folder with any static server. No install step, no build step.
 
-```bash
-cd game
-python3 -m http.server 8000
-```
+- **Move:** WASD or arrow keys
+- **Steal / enter a car:** E (walk up to a car first)
+- **Leave a car:** E
+- **Fight:** F for fists, click or Space to shoot once you have the pistol
+- **Pause / save:** P or Esc (the game saves to localStorage, Continue on the menu resumes it)
+- **Touch:** on-screen D-pad, STEAL and SHOOT buttons on touch devices
 
-Then open http://127.0.0.1:8000/ in your browser and press **START NEW GAME**.
+## Features
 
-Your save is stored in this browser only, under localStorage. Press **CONTINUE SAVED GAME** to pick up where you left off.
+- Open city on foot and by car, with 12 parked cars and 14 traffic cars
+- 26 pedestrians who wander the sidewalks and flee when trouble starts
+- Steal any car with E; stealing, hitting pedestrians, and shooting all raise your wanted level
+- Wanted system, 1 to 5 stars, with police cars that chase, ram, and try to bust you on foot
+- Combat with fists and a pistol pickup (12 rounds per pickup)
+- 5 story missions: a Docks pickup, a Bayfront delivery, a timed Night Market run, losing the cops at the Hideout, and the Big Score on the Strip
+- 12 cash stashes, health and pistol pickups
+- HUD with health, cash toward the $5,000 debt, score, wanted stars, weapon, speed, and an in-game clock
+- Live minimap with the mission target, police, and your position
+- Start, pause, save and continue via localStorage
+- Busted, Wasted, and Time Up end states, plus a Debt Paid ending with free roam after
+- Touch D-pad and buttons for mobile
 
-## Controls
+## Layout
 
-| Action | Key |
-|---|---|
-| Move on foot | WASD or Arrow keys |
-| Run | Shift |
-| Enter or steal a car | E |
-| Drive | W accelerate, S brake or reverse, A and D steer |
-| Hit, or shoot if you have the pistol | Space, or click the mouse |
-| Pause | P or Esc |
-| Sound on or off | M |
-
-Touch: on screen D-pad, ENTER, HIT and RUN buttons appear on touch devices.
-
-## What is in the game
-
-- A city on foot and by car, with roads, buildings, Palm Park, Bayfront beach, the Strip, the Night Market and the Docks
-- Traffic cars and pedestrians, with parked cars to steal
-- A wanted level, 1 to 5 stars, with police cars that chase you
-- 5 story missions with a waypoint marker, rewards and a final timed run
-- Combat, on foot and with a pistol pickup, plus rival gang members at the Docks
-- A HUD with health, cash, score, wanted stars, weapon, speed, clock, and a live minimap
-- Cash stashes, health and pistol pickups around the city
-- Start screen, pause screen, Busted, Wasted and Time Up screens, and save and continue
-- Synthesised sound effects only, made with WebAudio, no audio files
-
-## Missions
-
-1. First Wheels: steal a car and drive to Bayfront
-2. Bayfront Pickup: collect the package, deliver it to Palm Park
-3. Heat on the Strip: reach 2 stars wanted, then lose them
-4. Dockside Deal: grab the cash at the Docks and deal with rivals
-5. Sixth City King: final timed drive to the Hideout, 90 seconds
-
-Free roam continues after mission 5. Collect the 12 cash stashes and build your score.
-
-## Files
-
-- `game/index.html` : the playable game page
-- `game/style.css` : HUD, menus and touch controls
-- `game/game.js` : the whole game, canvas rendering, missions, police, traffic and save
-- `main.ts` : a small Node 22 build script, it copies `game/` and `screenshots/` to `out/` and writes `out/dossier.json`
-- `screenshots/` : 4 real renders of the game, captured in headless Chromium from this game's own code (capture notes in `SCREENSHOTS.md`)
-- `LICENSE` : MIT
-
-## Bounty notes, read before submitting
-
-This repo alone is not a complete make.fun entry yet. The bounty also asks for:
-
-- `vendor/makefun-game.ts`, copied from the make.fun kit unchanged
-- 3 or 4 screenshots under `screenshots/`, real renders of this game's own code
-- The sealed recordings of the agent sessions that built it, made by the kit's record command while the agent worked
-
-Those three items must be produced in a recorded agent session, using the kit, before submission. Do not submit this repo as it stands without them. At most 5 submissions a day and 10 in all, and your last submission before the deadline is your final entry.
+- `game/index.html`, `game/style.css`, `game/game.js`: the whole game, plain static files
+- `main.ts`: copies `game/` and `screenshots/` to `/output` and writes `dossier.json` with the vendored make.fun library
+- `vendor/makefun-game.ts`: the kit library, copied unchanged
+- `screenshots/`: 4 real renders of this build
 
 ## License
 
-MIT. See `LICENSE`.
+MIT. See [LICENSE](LICENSE).
