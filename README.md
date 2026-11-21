@@ -1,5 +1,9 @@
 # Leonida Heat: Sixth City
 
+[![Make GTA 6](https://make.fun/badge/gta6-01.svg)](https://make.fun/bounty/gta6-01)
+[![Rank](https://make.fun/badge/gta6-01/0xsilvaspace/leonida-heat-sixth-city/rank.svg)](https://make.fun/bounty/gta6-01)
+[![Reward](https://make.fun/badge/gta6-01/0xsilvaspace/leonida-heat-sixth-city/reward.svg)](https://make.fun/bounty/gta6-01)
+
 An original open world crime game, in the spirit of GTA 6, built for the make.fun bounty **Make GTA 6** (gta6-01, $1,666, ends Tue Nov 24 2026 at 3:00 PM UTC).
 
 Play it offline, in a desktop browser, from its own files. No network requests, no Rockstar content, no copied art, no copied music. All city, characters, vehicles, names, story, art and sound are original.
@@ -62,8 +66,8 @@ Free roam continues after mission 5. Collect the 12 cash stashes and build your 
 - `game/index.html` : the playable game page
 - `game/style.css` : HUD, menus and touch controls
 - `game/game.js` : the whole game, canvas rendering, missions, police, traffic and save
-- `main.ts` : a small Node 22 build script, it copies `game/` to `out/`
-- `screenshots/` : 3 or 4 real renders of the game, to be captured in desktop Chrome before submission
+- `main.ts` : a small Node 22 build script, it copies `game/` and `screenshots/` to `out/` and writes `out/dossier.json`
+- `screenshots/` : 4 real renders of the game, captured in headless Chromium from this game's own code
 - `LICENSE` : MIT
 
 ## Bounty notes, read before submitting
